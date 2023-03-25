@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GuessInput() {
+function GuessInput({ saveGuess }) {
   const [guess, setGuess] = React.useState('');
 
   return (
@@ -8,7 +8,7 @@ function GuessInput() {
       className="guess-input-wrapper"
       onSubmit={(event) => {
         event.preventDefault();
-        console.log({ guess });
+        saveGuess(guess);
         setGuess('');
       }}
     >
@@ -19,6 +19,7 @@ function GuessInput() {
         value={guess}
         maxLength={5}
         pattern={'^[A-Z]{5}$'}
+        autoComplete="off"
         onChange={(event) => {
           const newGuess = event.target.value;
           const nonStrings = /[^a-zA-z]/;
