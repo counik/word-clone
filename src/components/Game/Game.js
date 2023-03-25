@@ -1,4 +1,5 @@
 import React from 'react';
+import Guess from '../Guess';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
@@ -9,7 +10,11 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  return <>Put a game here!</>;
+  return (
+    <>
+      <Guess />
+    </>
+  );
 }
 
 export default Game;
