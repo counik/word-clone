@@ -1,19 +1,12 @@
 import React from 'react';
+import { range } from '../../utils';
 
-function Guess({ guess = '' }) {
-  let chars;
-
-  if (guess === '') {
-    chars = ['', '', '', '', ''];
-  } else {
-    chars = guess.split('');
-  }
-
+function Guess({ guess }) {
   return (
     <p className="guess">
-      {chars.map((char, index) => (
-        <span key={index} className="cell">
-          {char}
+      {range(5).map((number) => (
+        <span key={number} className="cell">
+          {guess ? guess[number] : null}
         </span>
       ))}
     </p>
