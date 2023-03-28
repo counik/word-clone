@@ -1,6 +1,7 @@
 import React from 'react';
+import { GAME_STATUSES } from '../../constants';
 
-function GuessInput({ saveGuess }) {
+function GuessInput({ saveGuess, gameStatus }) {
   const [guess, setGuess] = React.useState('');
 
   return (
@@ -13,19 +14,21 @@ function GuessInput({ saveGuess }) {
       }}
     >
       <label htmlFor="guess-input">Enter guess:</label>
-      <input
-        id="guess-input"
-        type="text"
-        value={guess}
-        maxLength={5}
-        pattern={'^[A-Z]{5}$'}
-        autoComplete="off"
-        onChange={(event) => {
-          const newGuess = event.target.value;
-          const nonStrings = /[^a-zA-z]/;
-          setGuess(newGuess.replace(nonStrings, '').toUpperCase());
-        }}
-      />
+      {gameStatus === GAME_STATUSES.pending && (
+        <input
+          id="guess-input"
+          type="text"
+          value={guess}
+          maxLength={5}
+          pattern={'^[A-Z]{5}$'}
+          autoComplete="off"
+          onChange={(event) => {
+            const newGuess = event.target.value;
+            const nonStrings = /[^a-zA-z]/;
+            setGuess(newGuess.replace(nonStrings, '').toUpperCase());
+          }}
+        />
+      )}
     </form>
   );
 }
